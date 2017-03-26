@@ -16,8 +16,6 @@ class AuthAdmin
     public function handle($request, Closure $next)
     {
 
-        \Log::alert($request);
-
         if ( $request->user() && ($request->user()->role_level == 9) ) {
 
             return $next($request);
@@ -39,7 +37,7 @@ class AuthAdmin
         }
 
 
-        return redirect('admin/login');
+        return redirect('dashboard/login');
 
 
     }

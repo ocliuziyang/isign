@@ -27,7 +27,7 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-                <form method="post" action="{{ route('admin.login') }}">
+                <form method="post" action="{{ route('dashboard.login') }}">
                     {{ csrf_field() }}
                     <h1>{{ config('backend.title') }} Login Form</h1>
                     <div>

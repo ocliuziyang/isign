@@ -38,7 +38,7 @@ class AuthController extends Controller
         if ($res) {
             //success login
 
-            return redirect('admin');
+            return redirect('dashboard/');
         }
 
         return back()->withErrors('用户名或密码出错');
@@ -53,6 +53,6 @@ class AuthController extends Controller
             Auth::logout();
         }
 
-        return redirect('admin/login');
+        return redirect('dashboard/login');
     }
 }

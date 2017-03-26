@@ -39,9 +39,7 @@ class UserTransformer extends TransformerAbstract
 			'phone_number' => $resource->phone_number,
 			'sex' => (bool) $resource->sex,
 			'company' => $resource->company,
-			'job' => $resource->job,
-			'role_level' => (bool) $resource->role_level,
-			'bus_id' => (int) $resource->bus_id
+			'job' => $resource->job
 			
         ];
     }

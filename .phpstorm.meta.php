@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-03-24.
+    * Generated on 2017-03-25.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -42,6 +42,9 @@ namespace PHPSTORM_META {
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
+            'fractal' instanceof \Cyvelnet\Laravel5Fractal\FractalServices,
+            'command.transformer.generate' instanceof \Cyvelnet\Laravel5Fractal\Commands\TransformerGeneratorCommand,
+            'Barryvdh\Cors\CorsService' instanceof \Barryvdh\Cors\CorsService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'cache' instanceof \Illuminate\Cache\CacheManager,
             'cache.store' instanceof \Illuminate\Cache\Repository,
@@ -162,6 +165,9 @@ namespace PHPSTORM_META {
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
+            'fractal' instanceof \Cyvelnet\Laravel5Fractal\FractalServices,
+            'command.transformer.generate' instanceof \Cyvelnet\Laravel5Fractal\Commands\TransformerGeneratorCommand,
+            'Barryvdh\Cors\CorsService' instanceof \Barryvdh\Cors\CorsService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'cache' instanceof \Illuminate\Cache\CacheManager,
             'cache.store' instanceof \Illuminate\Cache\Repository,
@@ -282,6 +288,9 @@ namespace PHPSTORM_META {
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
+            'fractal' instanceof \Cyvelnet\Laravel5Fractal\FractalServices,
+            'command.transformer.generate' instanceof \Cyvelnet\Laravel5Fractal\Commands\TransformerGeneratorCommand,
+            'Barryvdh\Cors\CorsService' instanceof \Barryvdh\Cors\CorsService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'cache' instanceof \Illuminate\Cache\CacheManager,
             'cache.store' instanceof \Illuminate\Cache\Repository,
@@ -402,6 +411,9 @@ namespace PHPSTORM_META {
             'command.ide-helper.generate' instanceof \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand,
             'command.ide-helper.models' instanceof \Barryvdh\LaravelIdeHelper\Console\ModelsCommand,
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
+            'fractal' instanceof \Cyvelnet\Laravel5Fractal\FractalServices,
+            'command.transformer.generate' instanceof \Cyvelnet\Laravel5Fractal\Commands\TransformerGeneratorCommand,
+            'Barryvdh\Cors\CorsService' instanceof \Barryvdh\Cors\CorsService,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
             'cache' instanceof \Illuminate\Cache\CacheManager,
             'cache.store' instanceof \Illuminate\Cache\Repository,

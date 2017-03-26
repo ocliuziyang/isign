@@ -13,4 +13,9 @@ Build on Laravel &amp; Vue (uncompleted)
     
     $ npm/cnpm install
     
+    $ bower install
+    
+    $ gulp copyFiles
+    
+    $ npm run watch
     

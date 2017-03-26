@@ -9,11 +9,14 @@
   },
   "devDependencies": {
     "bower": "^1.8.0",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "pnotify": "^3.0.0",
+    "sweetalert2": "^6.4.4"
   },
   "dependencies": {
     "axios": "^0.15.3",
     "bootstrap-sass": "^3.3.7",
+    "datatables.net": "^1.10.13",
     "jquery": "^3.2.1",
     "laravel-mix": "^0.8.9",
     "lodash": "^4.17.4",

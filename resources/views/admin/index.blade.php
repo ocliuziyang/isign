@@ -30,7 +30,13 @@
     <link href="/assets/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="/assets/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="/assets/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-    
+
+    <!--  PNotify -->
+    <link href="//cdn.bootcss.com/pnotify/3.0.0/pnotify.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/pnotify/3.0.0/pnotify.buttons.min.css" rel="stylesheet">
+    <!-- Sweetalert2-->
+    <link href="//cdn.bootcss.com/limonte-sweetalert2/6.4.4/sweetalert2.min.css" rel="stylesheet">
+
     <!-- Custom Theme Style -->
     <link href="/assets/gentelella/build/css/custom.min.css" rel="stylesheet">
 </head>
@@ -39,6 +45,10 @@
 
     <div id="app"></div>
 
+    <script src="/assets/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- PNotify -->
+    <script src="//cdn.bootcss.com/pnotify/3.0.0/pnotify.min.js"></script>
+    <script src="//cdn.bootcss.com/pnotify/3.0.0/pnotify.buttons.min.js"></script>
     <!-- 导入 vue.js 编译组件 -->
     <script src="{{ asset('js/main.js') }}"></script>
     <!-- Custom Theme Scripts -->

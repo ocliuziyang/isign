@@ -178,6 +178,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Cyvelnet\Laravel5Fractal\Laravel5FractalServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
+
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -229,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Fractal' => Cyvelnet\Laravel5Fractal\Facades\Fractal::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

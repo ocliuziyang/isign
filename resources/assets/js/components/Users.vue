@@ -10,7 +10,33 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>User Manager <small>Users</small></h2>
+                    <div class="pull-right">
+                        <router-link to="user/create"><button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Create New User</button></router-link>
+                        <a href="/"><button class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export Users</button></a>
+                        <!-- Large modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Import Users</button>
 
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Import Users</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="uploadExcelForm">
+                                            <div class="form-group">
+                                                <label>file</label>
+                                                <input type="file" id="excel" name="excel"/>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" @click="uploadExcel()">Upload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -34,13 +60,13 @@
                             <tr v-for="user in users">
                                 <td>{{ user.id }}</td>
                                 <td>{{ user.name }}</td>
-                                <td>{{ user.sex }}</td>
+                                <td>{{ user.sex ? 'Male' : 'Female' }}</td>
                                 <td>{{ user.phone_number }}</td>
                                 <td>{{ user.company }}</td>
                                 <td>{{ user.job }}</td>
                                 <td id="options">
-                                    <label class="btn btn-primary btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i></label>
-                                    <label class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></label>
+                                    <label class="btn btn-primary btn-sm" @click="editUser(user)"><i class="fa fa-pencil-square" aria-hidden="true"></i></label>
+                                    <label class="btn btn-danger btn-sm" @click="deleteUser(user.id)"><i class="fa fa-trash" aria-hidden="true"></i></label>
                                 </td>
                             </tr>
                         </tbody>
@@ -55,11 +81,13 @@
 <script>
 
     import api from '../api'
+    import swal from 'sweetalert2'
 
     export default {
         data() {
             return {
-                users: []
+                users: [],
+                excel: null,
             }
         },
         methods: {
@@ -85,6 +113,55 @@
                     console.log(error)
                     api.NProgress.done()
                 })
+            },
+
+            editUser(user) {
+                console.log(this.$route)
+                this.$router.push({ name: 'user', params: { action: 'edit' , user: user}})
+            },
+
+            deleteUser(userID) {
+                let self = this
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then(function () {
+                    axios.delete(api.API_ROOT+'user/'+userID).then(response=> {
+                        if (response.data.status == 1) {
+                            self.fetchUsers()
+                            swal(
+                                'Deleted!',
+                                response.data.message,
+                                'success'
+                            )
+                        } else  {
+                            alert(response.data.message)
+                        }
+
+                    }).catch(error=> {
+
+                    })
+
+                })
+            },
+
+            uploadExcel() {
+
+                var file = document.getElementById('excel').files[0];
+                var data = new FormData();
+                data.append('file', file);
+                data.append('name', 'test');
+                const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+                axios.put(api.API_ROOT+'users/import', data, config).then(response => {
+
+                    }).catch(error => {
+
+                });
             }
         },
         created() {

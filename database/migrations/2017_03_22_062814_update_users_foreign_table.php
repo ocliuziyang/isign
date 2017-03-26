@@ -15,7 +15,7 @@ class UpdateUsersForeignTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->tinyInteger('role_level')->after('job');
+            $table->tinyInteger('role_level')->after('job')->default(0);
             $table->integer('bus_id')->unsigned()->after('role_level')->nullable();
 
             $table->foreign('role_level')->on('roles')->references('level');
