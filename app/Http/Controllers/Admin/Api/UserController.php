@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Api;
 
 use App\Http\Requests\UserRequest;
 use App\Repositories\UserRepository;
+use App\Services\ExcelService;
 use App\Transformers\UserTransformer;
 use App\User;
 use \Auth;
@@ -138,18 +139,46 @@ class UserController extends ApiController
 
     }
 
-    public function importUsersFromExcel(Request $request)
+    /**
+     * @param Request $request
+     * @param ExcelService $excelService
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function importUsersFromExcel(Request $request, ExcelService $excelService)
     {
 
-        \Log::alert($request);
         if ($request->hasFile('file')) {
-            \Log::alert('含有file');
+            $file = $request->file('file');
+            $path = $file->getRealPath();
+            $res = $excelService->importListFromExcel($path);
+            if ($res == true) {
+                //成功
+                return $this->responseWithArray([
+                    'status' => 1,
+                    'message' => 'import successfully!'
+                ]);
+            } else {
+                return $this->responseWithArray([
+                    'status' => 0,
+                    'message' => 'import failed, please check the sheet!'
+                ]);
+            }
         } else {
-            \Log::alert('不含');
+
+            return $this->responseWithArray([
+                'status' => 0,
+                'message' => 'import failed!'
+            ]);
         }
+
     }
 
 
+    public function downloadUsersExcelExample()
+    {
+        $path = storage_path('/app/excels/users.xls');
+        return response()->download($path, 'usersExample.xls');
+    }
 
 
 }

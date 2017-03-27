@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('bio')->nullable();
             $table->string('phone_number')->unique();
-            $table->string('password')->default('123456');
+            $table->string('password')->default(Hash::make('123456'));
             $table->boolean('sex');
             $table->string('company')->nullable();
             $table->string('job')->nullable();

@@ -96,7 +96,7 @@
         methods: {
             createUser() {
                 let self = this
-                axios.post(api.API_ROOT+'user', {
+                axios.post('user', {
                     user: this.user
                 }).then(response => {
                     console.log(response)
@@ -119,7 +119,7 @@
 
             editUser() {
                 let self = this
-                axios.put(api.API_ROOT+'user', {
+                axios.put('user', {
                     user: this.user
                 }).then(response => {
                     console.log(response)

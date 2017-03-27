@@ -5,9 +5,16 @@ namespace App\Repositories;
 use App\User;
 use Illuminate\Http\Request;
 
+/**
+ * Class UserRepository
+ * @package App\Repositories
+ */
 class UserRepository {
 
 
+    /**
+     * @var User
+     */
     protected $user;
 
     /**
@@ -18,10 +25,15 @@ class UserRepository {
         $this->user = $user;
     }
 
-    public function updateUser(Request $request)
+    /**
+     * @param Request $request
+     * @return int
+     */
+    public function storeUser(Request $request)
     {
         $userArr = $request->get('user');
         $res = User::wherePhoneNumber($userArr['phone_number'])->get()->count();
+
         if ($res > 0) {
             return -1;
         }
@@ -34,7 +46,11 @@ class UserRepository {
         }
     }
 
-    public function storeUser(Request $request)
+    /**
+     * @param Request $request
+     * @return int
+     */
+    public function updateUser(Request $request)
     {
         $userArr = $request->get('user');
         $res = User::wherePhoneNumber($userArr['phone_number'])->where('id', '!=', $userArr['id'] )->get()->count();
@@ -43,13 +59,17 @@ class UserRepository {
         }
 
         if (User::whereId($userArr['id'])->update($userArr)) {
-            \Log::alert(User::find($userArr['id']));
+
             return 1;
         } else {
             return 0;
         }
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public function deleteUserWithId($id)
     {
         $res = User::destroy($id);

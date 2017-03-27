@@ -11,19 +11,23 @@
 |
 */
 
-Route::get('/', 'Admin\Api\ExcelController@exportUserToExcel');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 //Api
 Route::group(['prefix' => 'admin/api', 'namespace' => 'Admin', 'middleware' => ['auth.admin']], function () {
 
     Route::get('me', 'Api\UserController@me');
-    Route::get('users', 'Api\UserController@index');
 
+    Route::get('users', 'Api\UserController@index');
     Route::post('user', 'Api\UserController@store');
     Route::put('user', 'Api\UserController@update');
     Route::delete('user/{id}', 'Api\UserController@delete');
     Route::put('users/import', 'Api\UserController@importUsersFromExcel');
+
+    Route::get('downloadUsersExcelExample', 'Api\UserController@downloadUsersExcelExample');
 });
 
 

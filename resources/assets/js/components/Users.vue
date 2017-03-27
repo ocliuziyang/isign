@@ -31,6 +31,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
+                                        <a href="/admin/apidownloadUsersExcelExample"></a><button class="btn btn-primary">Download Example</button>
                                         <button class="btn btn-primary" @click="uploadExcel()">Upload</button>
                                     </div>
                                 </div>
@@ -82,7 +83,7 @@
 
     import api from '../api'
     import swal from 'sweetalert2'
-
+    import {show_stack_bottomright} from '../utils/notify'
     export default {
         data() {
             return {
@@ -131,7 +132,7 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, delete it!'
                 }).then(function () {
-                    axios.delete(api.API_ROOT+'user/'+userID).then(response=> {
+                    axios.delete('user/'+userID).then(response=> {
                         if (response.data.status == 1) {
                             self.fetchUsers()
                             swal(
@@ -152,15 +153,25 @@
 
             uploadExcel() {
 
+                let self = this
                 var file = document.getElementById('excel').files[0];
-                var data = new FormData();
-                data.append('file', file);
-                data.append('name', 'test');
-                const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-                axios.put(api.API_ROOT+'users/import', data, config).then(response => {
+                var data = new FormData()
+                data.append('_method', 'put')
+                data.append('file', file)
+                axios.post('users/import', data).then(response => {
+                    console.log(response)
+                    if (response.data.status == 1) {
+                        self.fetchUsers()
+                        show_stack_bottomright('success', 'Successful operation', response.data.message)
+                    } else  {
+                        show_stack_bottomright('error', 'failing operation', response.data.message)
+                    }
 
-                    }).catch(error => {
+                    $('.bs-example-modal-sm').modal('hide')
 
+                }).catch(error => {
+                    $('.bs-example-modal-sm').modal('hide')
+                    show_stack_bottomright('error', 'failing operation', 'Server 500 error')
                 });
             }
         },

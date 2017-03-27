@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\User;
+use League\Flysystem\Exception;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExcelService {
@@ -28,4 +30,24 @@ class ExcelService {
         })->export('xls');
     }
 
+    public function importListFromExcel($filePath)
+    {
+
+        try {
+
+            Excel::load($filePath, function ($reader){
+                $reader = $reader->get(['name', 'bio', 'phone_number', 'sex', 'company', 'job']);
+                foreach ($reader->toArray() as $row) {
+                    User::firstOrCreate($row);
+                }
+            });
+
+            return true;
+
+        } catch (Exception $exception) {
+
+            return false;
+        }
+
+    }
 }
