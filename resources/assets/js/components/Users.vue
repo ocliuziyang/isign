@@ -12,9 +12,7 @@
                     <h2>User Manager <small>Users</small></h2>
                     <div class="pull-right">
                         <router-link to="user/create"><button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Create New User</button></router-link>
-                        <a href="/"><button class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export Users</button></a>
-                        <!-- Large modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Import Users</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-sm">Import Users</button>
 
                         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                             <div class="modal-dialog modal-sm" role="document">
@@ -31,8 +29,8 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="/admin/apidownloadUsersExcelExample"></a><button class="btn btn-primary">Download Example</button>
-                                        <button class="btn btn-primary" @click="uploadExcel()">Upload</button>
+                                        <a href="/admin/apidownloadUsersExcelExample"><button class="btn btn-info pull-left">Download Example</button></a>
+                                        <button class="btn btn-success" @click="uploadExcel()">Upload</button>
                                     </div>
                                 </div>
                             </div>
