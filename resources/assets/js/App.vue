@@ -1,10 +1,16 @@
+<style>
+    .img-logo {
+        width: 45px;
+        height: 45px;
+    }
+</style>
 <template>
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <router-link to="/" class="site_title"><i class="fa fa-paw"></i> <span>后台管理</span></router-link>
+                        <router-link to="/" class="site_title"><img :src="logoSrc" class="img-logo"> <span>后台管理</span></router-link>
                     </div>
 
                     <div class="clearfix"></div>
@@ -60,7 +66,7 @@
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    ISign by <a href="#">草侠</a>
                 </div>
                 <div class="clearfix"></div>
             </footer>
@@ -80,6 +86,7 @@
         components: {Sidebar, Navbar},
         data() {
             return {
+                logoSrc: '/images/isign_logo.png',
                 avatar: '/assets/gentelella/production/images/picture.jpg',
                 me: {}
             }

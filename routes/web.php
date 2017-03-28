@@ -28,6 +28,9 @@ Route::group(['prefix' => 'admin/api', 'namespace' => 'Admin', 'middleware' => [
     Route::put('users/import', 'Api\UserController@importUsersFromExcel');
 
     Route::get('downloadUsersExcelExample', 'Api\UserController@downloadUsersExcelExample');
+
+    Route::get('buses', 'Api\BusController@index');
+
 });
 
 
