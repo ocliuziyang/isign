@@ -37,7 +37,7 @@
                                 <td>{{ bus.created_at }}</td>
                                 <td>
                                     <router-link to="/bus/2/edit"><button class="btn btn-primary"><i class="fa fa-pencil-square" aria-hidden="true"></i></button></router-link>
-                                    <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    <button class="btn btn-danger" @click="deleteBus(bus.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -49,7 +49,11 @@
 </template>
 
 <script>
+
     import NProgress from 'nprogress'
+    import swal from 'sweetalert2'
+
+    import {show_stack_bottomright} from '../utils/notify'
     export default {
         data() {
           return {
@@ -68,10 +72,44 @@
                     $(document).ready(function () {
                         $('#datatable').DataTable();
                     })
+                    show_stack_bottomright('success', 'Tip', 'Load Buses list successfully!')
                     NProgress.done()
                 }).catch(error => {
                     console.log(error)
+                    show_stack_bottomright('error', 'Tip', error.toString())
                     NProgress.done()
+                })
+            },
+
+            deleteBus(busId) {
+
+                var self = this
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then(function () {
+                    axios.delete('bus/'+busId+'/delete').then(response => {
+                        console.log(response)
+                        if (response.data.status == 1) {
+                            self.fetchBuses()
+                            swal(
+                                'Deleted!',
+                                response.data.message,
+                                'success'
+                            )
+                        } else  {
+                            show_stack_bottomright('error', 'Error', response.data.message)
+                        }
+                    }).catch(error => {
+
+                        show_stack_bottomright('error', 'Error', 'Internal Error!')
+                        alert(error.toString())
+                    });
                 })
             }
         },

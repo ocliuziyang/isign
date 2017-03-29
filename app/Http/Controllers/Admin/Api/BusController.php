@@ -15,4 +15,19 @@ class BusController extends ApiController
         $buses =  Bus::all();
         return $this->responseWithCollection($buses, new BusTransformer());
     }
+
+    public function delete($id)
+    {
+        if (Bus::destroy($id) > 0) {
+            return $this->responseWithArray([
+                'status' => 1,
+                'message' => 'successful deleted！'
+            ]);
+        } else {
+            return $this->responseWithArray([
+                'status' => 0,
+                'message' => 'failing deleted！'
+            ]);
+        }
+    }
 }

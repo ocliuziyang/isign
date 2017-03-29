@@ -15,7 +15,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" v-model="user.name">
+                                <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" >
                             </div>
                         </div>
 
@@ -23,11 +23,11 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div id="gender" class="btn-group" data-toggle="buttons">
-                                    <label class="btn" :class="[user.sex ? 'btn-primary' : 'btn-default']" @click="user.sex=true">
+                                    <label class="btn">
                                         &nbsp; Male &nbsp;
                                     </label>
 
-                                    <label class="btn" :class="[user.sex ? 'btn-default' : 'btn-primary']" @click="user.sex=false">
+                                    <label class="btn">
                                         Female
                                     </label>
                                 </div>
@@ -36,20 +36,21 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">phone</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input class="form-control col-md-7 col-xs-12" type="text"   v-model="user.phone_number">
+                                <input class="form-control col-md-7 col-xs-12" type="text">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">company</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input class="form-control col-md-7 col-xs-12" type="text"   v-model="user.company">
+                                <input class="form-control col-md-7 col-xs-12" type="text">
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">job</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input class="form-control col-md-7 col-xs-12" type="text" v-model="user.job">
+                                <input class="form-control col-md-7 col-xs-12" type="text">
                             </div>
                         </div>
 
@@ -61,8 +62,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                             <button class="btn btn-primary" type="button">Cancel</button>
                             <button class="btn btn-primary" type="reset">Reset</button>
-                            <button class="btn btn-success" v-if="isCreateUser" @click="createUser()">Submit</button>
-                            <button class="btn btn-success" v-else @click="editUser()">Submit</button>
+                            <button class="btn btn-success">Submit</button>
                         </div>
                     </div>
                 </div>

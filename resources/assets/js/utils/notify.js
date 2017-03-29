@@ -6,7 +6,7 @@ export function show_stack_bottomright(type, title='title', text='text') {
         text: "Check me out. I'm in a different stack.",
         addclass: "stack-bottomright",
         stack: stack_bottomright,
-        delay: 3000,
+        delay: 2400,
         closer: true,
         hide: true,
     };

@@ -29,7 +29,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="/admin/apidownloadUsersExcelExample"><button class="btn btn-info pull-left">Download Example</button></a>
+                                        <a href="/admin/api/downloadUsersExcelExample"><button class="btn btn-info pull-left">Download Example</button></a>
                                         <button class="btn btn-success" @click="uploadExcel()">Upload</button>
                                     </div>
                                 </div>
