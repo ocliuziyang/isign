@@ -37,6 +37,7 @@ class BusTransformer extends TransformerAbstract
             'id' => (int) $resource->id,
 			'name' => $resource->name,
 			'description' => $resource->description,
+            'seat_count' => $resource->seat_count,
 			'is_active' => $resource->is_active,
 			'status' => $resource->status,
 			'created_at' => $resource->created_at->toDateTimeString(),

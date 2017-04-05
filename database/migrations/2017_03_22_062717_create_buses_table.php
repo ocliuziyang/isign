@@ -18,7 +18,8 @@ class CreateBusesTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->boolean('is_active')->default(false);
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('seat_count');
+            $table->tinyInteger('status')->default(0)->comment('// 0.待机 1.前往机场 2.到达机场 3.机场载客中 4.满客停止载客 5.前往酒店中 6.到达酒店 ');
             $table->timestamps();
         });
     }

@@ -90,6 +90,13 @@
             }
         },
         methods: {
+            //初始化插件
+            initPlugins () {
+                setTimeout(() => {
+                    SetDataTable('#datatable-fixed-header')
+                })
+            },
+
             fetchUsers() {
                 api.NProgress.start()
                 axios.get(api.API_USERS).then(response => {
@@ -101,9 +108,7 @@
                     } else {
 
                         this.users = response.data.data
-                        $(window).ready(function() {
-                            $('#datatable-fixed-header').DataTable();
-                        } );
+                        this.initPlugins()
                     }
                     console.log(response)
                     api.NProgress.done()

@@ -31,6 +31,7 @@ $factory->define(\App\Bus::class, function (\Faker\Generator $facker) {
     return [
         'name' => $i.'号车',
         'description' => '',
+        'seat_count' => 35,
         'is_active' => false,
         'status' => 0
     ];

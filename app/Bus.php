@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $description
  * @property bool $is_active
- * @property bool $status
+ * @property int $status
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\App\Bus whereCreatedAt($value)
@@ -22,9 +22,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Bus whereStatus($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Bus whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $seat_count
+ * @method static \Illuminate\Database\Query\Builder|\App\Bus whereSeatCount($value)
  */
 class Bus extends Model
 {
     //
-    protected $fillable = ['name', 'description', 'is_active', 'status'];
+    protected $fillable = ['name', 'description', 'seat_count', 'is_active', 'status'];
 }

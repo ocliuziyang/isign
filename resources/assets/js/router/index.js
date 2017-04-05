@@ -38,33 +38,38 @@ export default new Router({
             component: Buses
         },
         {
-            path: '/bus/:id/edit',
-            name: '/busEdit',
+            path: '/bus/create',
+            name: 'busCreate',
+            component: EditBus
+        },
+        {
+            path: '/buses/:id/edit',
+            name: 'busEdit',
             component: EditBus
         },
         {
             path: '/wineshops',
-            name: '/wineshops',
+            name: 'wineShops',
             component: Wineshop
         },
         {
             path: '/meetings',
-            name: '/meetings',
+            name: 'meetings',
             component: Meeting
         },
         {
             path: '/signBus',
-            name: '/signBus',
+            name: 'signBus',
             component: SignBus
         },
         {
             path: '/signMeeting',
-            name: '/signMeeting',
+            name: 'signMeeting',
             component: SignMeeting
         },
         {
             path: '/signWineshop',
-            name: '/signWineshop',
+            name: 'signWineshop',
             component: SignWineshop
         },
         {

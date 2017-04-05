@@ -5,7 +5,7 @@
                 <div class="x_title">
                     <h2>Buses Manage <small>Bus</small></h2>
                     <div class="pull-right">
-                        <button class="btn btn-primary">Add New</button>
+                        <router-link to="/bus/create"><button class="btn btn-primary">NewBus</button></router-link>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -19,6 +19,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>SeatCount</th>
                             <th>IsActive</th>
                             <th>Status</th>
                             <th>CreatedTime</th>
@@ -32,11 +33,22 @@
                                 <td>{{ bus.id }}</td>
                                 <td>{{ bus.name }}</td>
                                 <td>{{ bus.description }}</td>
+                                <td>{{ bus.seat_count }}</td>
                                 <td>{{ bus.is_active ? 'Enabled' : 'Disabled' }}</td>
-                                <td>{{ bus.status }}</td>
+
+                                <td v-if="bus.status === 0"><label class="label label-default">待机</label></td>
+                                <td v-else-if="bus.status === 1"><label class="label label-primary">前往机场</label></td>
+                                <td v-else-if="bus.status === 2"><label class="label label-success">到达机场</label></td>
+                                <td v-else-if="bus.status === 3"><label class="label label-info">机场载客中</label></td>
+                                <td v-else-if="bus.status === 4"><label class="label label-warning">满客停止载客</label></td>
+                                <td v-else-if="bus.status === 5"><label class="label label-primary">前往酒店中</label></td>
+                                <td v-else-if="bus.status === 6"><label class="label label-success">到达酒店</label></td>
+                                <td v-else><label class="label label-default">未知状态</label></td>
+
+
                                 <td>{{ bus.created_at }}</td>
                                 <td>
-                                    <router-link to="/bus/2/edit"><button class="btn btn-primary"><i class="fa fa-pencil-square" aria-hidden="true"></i></button></router-link>
+                                    <router-link :to="{ name: 'busEdit', params: { id: bus.id } }"><button class="btn btn-primary"><i class="fa fa-pencil-square" aria-hidden="true"></i></button></router-link>
                                     <button class="btn btn-danger" @click="deleteBus(bus.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </td>
                             </tr>
@@ -62,16 +74,18 @@
         },
         methods: {
 
-            fetchBuses() {
+            initPlugins () {
+                setTimeout(() => {
+                    SetDataTable('#datatable')
+                })
+            },
+
+            fetchBuses () {
                 NProgress.start()
-                console.log('开始获取班车列表')
                 axios.get('/buses').then(response => {
-                    console.log(response)
                     this.buses = response.data.data
                     //datatables
-                    $(document).ready(function () {
-                        $('#datatable').DataTable();
-                    })
+                    this.initPlugins()
                     show_stack_bottomright('success', 'Tip', 'Load Buses list successfully!')
                     NProgress.done()
                 }).catch(error => {
@@ -93,8 +107,10 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, delete it!'
                 }).then(function () {
-                    axios.delete('bus/'+busId+'/delete').then(response => {
-                        console.log(response)
+                    axios.post('buses/'+busId, {
+                        _method: 'delete'
+                    }).then(response => {
+
                         if (response.data.status == 1) {
                             self.fetchBuses()
                             swal(
@@ -113,7 +129,7 @@
                 })
             }
         },
-        created() {
+        mounted() {
             this.fetchBuses()
         }
     }

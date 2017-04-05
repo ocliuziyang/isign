@@ -29,8 +29,12 @@ Route::group(['prefix' => 'admin/api', 'namespace' => 'Admin', 'middleware' => [
 
     Route::get('downloadUsersExcelExample', 'Api\UserController@downloadUsersExcelExample');
 
+    Route::get('busesAvailableList', 'Api\BusController@getBusesAvailableList');
+    Route::get('buses/{id}', 'Api\BusController@show');
     Route::get('buses', 'Api\BusController@index');
-    Route::delete('bus/{id}/delete', 'Api\BusController@delete');
+    Route::post('buses', 'Api\BusController@store');
+    Route::put('buses/{id}', 'Api\BusController@update');
+    Route::delete('buses/{id}', 'Api\BusController@delete');
 
 });
 
